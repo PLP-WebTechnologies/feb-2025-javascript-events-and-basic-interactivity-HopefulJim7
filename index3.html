@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Bundle of Joy</title>
+    <style>
+      /* Base styling for clarity */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+        transition: background-color 0.5s;
+      }
+      h1, h2 {
+        color: #333;
+      }
+      button {
+        padding: 10px 15px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      /* --- Part 1: Event Handling --- */
+      #colorButton {
+        background-color: lightblue;
+        border: none;
+      }
+      #hoverArea {
+        width: 150px;
+        height: 100px;
+        background-color: #ddd;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+        transition: background-color 0.3s;
+      }
+      /* --- Part 2: Interactive Elements --- */
+      #toggleButton {
+        background-color: lightgreen;
+        border: none;
+      }
+      /* Image Gallery Styles */
+      #gallery {
+        margin: 20px 0;
+        position: relative;
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+      }
+      #gallery img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+      #gallery img.active {
+        opacity: 1;
+      }
+      /* Accordion Styles */
+      .accordion-section {
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+      }
+      .accordion-header {
+        padding: 10px;
+        background: #eee;
+        cursor: pointer;
+      }
+      .accordion-content {
+        padding: 10px;
+        display: none;
+      }
+      /* --- Part 3: Form Validation --- */
+      form {
+        max-width: 400px;
+        margin: 20px 0;
+      }
+      form input {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+      }
+      form span.error {
+        color: red;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Interactive Bundle of Joy</h1>
+
+    <!-- Part 1: Event Handling -->
+    <section id="eventHandling">
+      <h2>Event Handling</h2>
+      <!-- Button Click -->
+      <button id="colorButton">Change Background</button>
+      <!-- Hover Effects -->
+      <div id="hoverArea">Hover over me!</div>
+      <!-- Keypress Detection -->
+      <input type="text" id="keyInput" placeholder="Type something..." />
+      <p id="keypressOutput"></p>
+      <!-- Bonus: Double-click Secret Action -->
+      <button id="secretButton">Double-click Me!</button>
+    </section>
+
+    <!-- Part 2: Interactive Elements -->
+    <section id="interactiveElements">
+      <h2>Interactive Elements</h2>
+      <!-- Button that toggles text and color -->
+      <button id="toggleButton">Click Me to Toggle</button>
+
+      <!-- Image Gallery / Slideshow -->
+      <div id="gallery">
+        <img src="https://images.pexels.com/photos/10455982/pexels-photo-10455982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="active" alt="Image 1" />
+        <img src="https://plus.unsplash.com/premium_photo-1720524513100-2fa5f656272f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2" />
+        <img src="https://plus.unsplash.com/premium_photo-1734470817208-a31fabc132b6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3" />
+      </div>
+      <button id="prev">Previous</button>
+      <button id="next">Next</button>
+
+      <!-- Accordion (Tabs-style Content) -->
+      <div class="accordion-section">
+        <div class="accordion-header">Section 1</div>
+        <div class="accordion-content">Content for Section 1</div>
+      </div>
+      <div class="accordion-section">
+        <div class="accordion-header">Section 2</div>
+        <div class="accordion-content">Content for Section 2</div>
+      </div>
+      <div class="accordion-section">
+        <div class="accordion-header">Section 3</div>
+        <div class="accordion-content">Content for Section 3</div>
+      </div>
+    </section>
+
+    <!-- Part 3: Form Validation -->
+    <section id="formValidation">
+      <h2>Form Validation</h2>
+      <form id="myForm" novalidate>
+        <label for="name">Name (Required):</label>
+        <input type="text" id="name" required />
+        <span class="error" id="nameError"></span>
+        
+        <label for="email">Email (Must be valid):</label>
+        <input type="email" id="email" required />
+        <span class="error" id="emailError"></span>
+        
+        <label for="password">Password (Min 8 Characters):</label>
+        <input type="password" id="password" required minlength="8" />
+        <span class="error" id="passwordError"></span>
+        
+        <button type="submit">Submit</button>
+      </form>
+      <div id="formMessage"></div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // ===================
+        // Part 1: Event Handling
+        // ===================
+
+        // Button click to change background color randomly.
+        const colorButton = document.getElementById("colorButton");
+        colorButton.addEventListener("click", function () {
+          const randomColor =
+            "#" +
+            Math.floor(Math.random() * 16777215)
+              .toString(16)
+              .padStart(6, "0");
+          document.body.style.backgroundColor = randomColor;
+        });
+
+        // Hover effects: Change background color when hovering.
+        const hoverArea = document.getElementById("hoverArea");
+        hoverArea.addEventListener("mouseover", function () {
+          hoverArea.style.backgroundColor = "yellow";
+        });
+        hoverArea.addEventListener("mouseout", function () {
+          hoverArea.style.backgroundColor = "#ddd";
+        });
+
+        // Keypress detection: Display which key was pressed.
+        const keyInput = document.getElementById("keyInput");
+        const keypressOutput = document.getElementById("keypressOutput");
+        keyInput.addEventListener("keydown", function (e) {
+          keypressOutput.textContent = "Key pressed: " + e.key;
+        });
+
+        // Bonus: Secret action on double-click.
+        const secretButton = document.getElementById("secretButton");
+        secretButton.addEventListener("dblclick", function () {
+          alert("Secret action triggered!");
+        });
+
+        // ===================
+        // Part 2: Interactive Elements
+        // ===================
+
+        // Button that toggles text and color.
+        const toggleButton = document.getElementById("toggleButton");
+        let toggleState = false;
+        toggleButton.addEventListener("click", function () {
+          toggleState = !toggleState;
+          toggleButton.textContent = toggleState ? "State: ON" : "State: OFF";
+          toggleButton.style.backgroundColor =
+            toggleState ? "orange" : "lightgreen";
+        });
+
+        // Image Gallery / Slideshow
+        const images = document.querySelectorAll("#gallery img");
+        let currentImageIndex = 0;
+        const showImage = (index) => {
+          images.forEach((img, idx) => {
+            img.classList.toggle("active", idx === index);
+          });
+        };
+        document.getElementById("prev").addEventListener("click", function () {
+          currentImageIndex =
+            (currentImageIndex - 1 + images.length) % images.length;
+          showImage(currentImageIndex);
+        });
+        document.getElementById("next").addEventListener("click", function () {
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+          showImage(currentImageIndex);
+        });
+
+        // Accordion for tabs/accordion-style content.
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+        accordionHeaders.forEach((header) => {
+          header.addEventListener("click", function () {
+            const content = header.nextElementSibling;
+            // Toggle the display of the accordion content.
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        });
+
+        // ===================
+        // Part 3: Form Validation
+        // ===================
+
+        const form = document.getElementById("myForm");
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const formMessage = document.getElementById("formMessage");
+
+        // Real-time feedback for Name field.
+        nameInput.addEventListener("input", function () {
+          const error = document.getElementById("nameError");
+          error.textContent =
+            nameInput.value.trim() === "" ? "Name is required." : "";
+        });
+        // Real-time feedback for Email.
+        emailInput.addEventListener("input", function () {
+          const error = document.getElementById("emailError");
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          error.textContent = emailPattern.test(emailInput.value)
+            ? ""
+            : "Invalid email format.";
+        });
+        // Real-time feedback for Password.
+        passwordInput.addEventListener("input", function () {
+          const error = document.getElementById("passwordError");
+          error.textContent =
+            passwordInput.value.length < 8
+              ? "Password must be at least 8 characters."
+              : "";
+        });
+
+        // Final form validation on submit.
+        form.addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent submission if validation fails.
+          let valid = true;
+          if (nameInput.value.trim() === "") {
+            document.getElementById("nameError").textContent = "Name is required.";
+            valid = false;
+          }
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(emailInput.value)) {
+            document.getElementById("emailError").textContent =
+              "Invalid email format.";
+            valid = false;
+          }
+          if (passwordInput.value.length < 8) {
+            document.getElementById("passwordError").textContent =
+              "Password must be at least 8 characters.";
+            valid = false;
+          }
+
+          if (valid) {
+            formMessage.textContent = "Form submitted successfully!";
+            formMessage.style.color = "green";
+            form.reset();
+            // Clear error messages.
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("passwordError").textContent = "";
+          } else {
+            formMessage.textContent = "Please fix the errors and try again.";
+            formMessage.style.color = "red";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

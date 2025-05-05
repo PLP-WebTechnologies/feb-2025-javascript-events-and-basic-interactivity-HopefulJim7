@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Bundle of Joy</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Interactive Bundle of Joy</h1>
+    
+    <!-- Part 1: Event Handling -->
+    <section id="eventHandling">
+      <h2>Event Handling</h2>
+      <!-- Button Click -->
+      <button id="colorButton">Change Background</button>
+      
+      <!-- Hover Effects -->
+      <div id="hoverArea">Hover over me!</div>
+      
+      <!-- Keypress Detection -->
+      <input type="text" id="keyInput" placeholder="Type something..." />
+      <p id="keypressOutput"></p>
+      
+      <!-- Bonus: Double-click Secret Action -->
+      <button id="secretButton">Double-click Me!</button>
+    </section>
+    
+    <!-- Part 2: Interactive Elements -->
+    <section id="interactiveElements">
+      <h2>Interactive Elements</h2>
+      <!-- Button that toggles text and color -->
+      <button id="toggleButton">Click Me to Toggle</button>
+      
+      <!-- Gallery Section with provided images -->
+      <div id="gallery">
+        <img src="https://images.pexels.com/photos/10455982/pexels-photo-10455982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="active" alt="Image 1" />
+        <img src="https://plus.unsplash.com/premium_photo-1720524513100-2fa5f656272f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2" />
+        <img src="https://plus.unsplash.com/premium_photo-1734470817208-a31fabc132b6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3" />
+      </div>
+      <button id="prev">Previous</button>
+      <button id="next">Next</button>
+      
+      <!-- Accordion / Tabs -->
+      <div class="accordion-section">
+        <div class="accordion-header">Section 1</div>
+        <div class="accordion-content">Content for Section 1</div>
+      </div>
+      <div class="accordion-section">
+        <div class="accordion-header">Section 2</div>
+        <div class="accordion-content">Content for Section 2</div>
+      </div>
+      <div class="accordion-section">
+        <div class="accordion-header">Section 3</div>
+        <div class="accordion-content">Content for Section 3</div>
+      </div>
+    </section>
+    
+    <!-- Part 3: Form Validation -->
+    <section id="formValidation">
+      <h2>Form Validation</h2>
+      <form id="myForm" novalidate>
+        <label for="name">Name (Required):</label>
+        <input type="text" id="name" required />
+        <span class="error" id="nameError"></span>
+        
+        <label for="email">Email (Must be valid):</label>
+        <input type="email" id="email" required />
+        <span class="error" id="emailError"></span>
+        
+        <label for="password">Password (Min 8 Characters):</label>
+        <input type="password" id="password" required minlength="8" />
+        <span class="error" id="passwordError"></span>
+        
+        <button type="submit">Submit</button>
+      </form>
+      <div id="formMessage"></div>
+    </section>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
